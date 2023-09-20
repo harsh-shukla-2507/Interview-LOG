@@ -1,0 +1,20 @@
+extends ../layouts/main
+        
+block Content
+    .row
+        //- Code to strip the formatting tags
+        - var articlebody=article.body 
+        - articlebody = articlebody.replace(/<(?:.|\n)*?>/gm, '')
+        .col.s12.m8
+            h3=article.title
+            .card.story
+                .card-content
+                    span.card-title=article.time
+                    =article.body
+        .col.s12.m4
+            .card.center-align
+                .card-content
+                    span.card-title=article.user.displayName
+                    img.circle.responsive-img.img-small(src=`${article.user.image}`)
+                .card-action
+                    a(href='/articles/user/'+article.user._id) More From #{article.user.firstName}
